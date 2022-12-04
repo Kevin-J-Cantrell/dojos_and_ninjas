@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css'
+        integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+        <link rel='stylesheet' href="{{url_for('static',filename='style.css')}}">
+        <title>Dojos</title>
+    </head>
+    
+<body>
+    <div class="container-fluid d-flex">
+    <div class="container-sm box1 offset-2 col-3" style="margin-top:5%; height: 250px">
+    <h1 class="text-center">New Dojo</h1>
+    <form action="/dojos/create" method="post">
+        <div class="row mb-1">
+            <div class="col">
+                <label class="form-label" style="margin-left: 20%;">Dojo Name:</label>
+                <input type="text" name="dojo_name" class="form-control col-6 "
+                    style="margin-left: 20%;" placeholder="Dojo name">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2" style="margin-left: 20%;">Add Dojo</button>
+    </form>
+    </div>
+    
+    
+    
+    <div class="container-sm box1 offset-2 col-3" style="margin-top:5%;">
+    <h1 class="text-center">All Dojos</h1>
+    {% for dojo in dojos %}
+    <p><a href="/dojos/{{dojo.id}}/show">{{dojo.name}}</a> | <a href="/dojos/{{dojo.id}}/delete">Delete {{dojo.name}}</a></p>
+    {% endfor %}
+        
+    <a class="btn btn-info col-4" style="margin: 4% 64% ;"  href="/ninjas">Add Ninja</a>
+    </div>
+</div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
